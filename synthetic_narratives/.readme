@@ -1,1 +1,28 @@
 Here we generate synthetic narratives, using articles from wikipedia, so that we have ground truth for event boundaries
+
+Update
+http://localhost:8888/notebooks/synthetic_text_reservoir_wip.ipynb
+
+Generated a synthetic narrative with these boundaries
+[54, 85, 63, 149, 163, 28, 30, 107, 128, 148, 130, 110, 59, 57, 94, 54, 120, 82, 49, 30]
+[54, 139, 202, 351, 514, 542, 572, 679, 807, 955, 1085, 1195, 1254, 1311, 1405, 1459, 1579, 1661, 1710]
+ 
+This give beautiful lag gradient results.
+
+The data were generated 
+http://localhost:8888/notebooks/iterat_struct_res_synth2.ipynb
+
+inputDataTesting = np.load("synthetic_narrative2.npy")
+ground_truth_sums = np.load("synthetic_narrative2-gt.npy")
+
+We then performed the shuffling with different binnings in
+http://localhost:8888/notebooks/iterat_struct_res_synth_shuffling-scaled.ipynb
+num_bins_list = [5, 10, 20, 50, 100, 200, 500]
+np.save('sorted_indexes.npy', sorted_indexes)
+
+Using the sorted_indexes we then ran 40 models on each of the 7 binnings
+http://localhost:8888/notebooks/iterate_structured_reservoir_multiple_shuffle_binnings.ipynb
+*****************
+
+The indexes in the the ground truths which vary from 54 to 1710 are the same indexes as in the sorted indexes, so the original event boundaries
+can be identified.  Also the shuffle boundaries are printed out in the ipynb file iterat_struct_res_synth_shuffling-scaled.ipynb
